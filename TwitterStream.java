@@ -48,8 +48,9 @@ public class TwitterStream {
 					result = twitter.search(query);
 					List<Status> tweets = result.getTweets();
 					for (Status tweet : tweets) {
-						System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText() + "\n");
-						//bw.write("@" + tweet.getUser().getScreenName() + " - " + tweet.getText() + "\n");
+						System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+						System.out.println("Tweet Favorite Count :: " + tweet.getFavoriteCount());
+						System.out.println("Retweet Count :: " + tweet.getRetweetCount() + "\n");
 					}
 				} while ((query = result.nextQuery()) != null);
 				System.exit(0);
