@@ -24,7 +24,20 @@ public class TwitterStream {
 		Twitter twitter = new TwitterFactory(cb.build()).getInstance();
 
 		while (true) {
-
+			try {
+				List<Status> statuses = twitter.getHomeTimeline();
+				System.out.println("Showing home timeline.");
+				for (Status status : statuses) {
+					System.out.println(status.getUser().getName() + ":" + status.getText());
+					System.out.println(status.getRetweetCount());
+					System.out.println(status.getFavoriteCount());
+					System.out.println(status.getGeoLocation() + "\n");
+				}
+			} catch (TwitterException te) {
+				System.out.println("Exception caught :::::: " + te);
+				te.printStackTrace();
+			}
+			System.out.println("Now Running Desired Query...");
 			try {
 				Query query = new Query("IPL2017");
 				QueryResult result;
